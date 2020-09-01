@@ -12,54 +12,110 @@ const render = require("./lib/htmlRenderer");
 
 
 // Write code to use inquirer to gather information about the development team members,
-function addManager() {
+function addMember() {
     inquirer.prompt([
     {
         message: "Enter manager's name:",
         name: "name"
     },
     {
-        message: "What is manager's ID?",
-        name: "name"
+        message: "What is manager's ID number?",
+        name: "ID"
     },
     {
         message: "What is manager's email?",
-        name: "name"
+        name: "email"
     },
     {
         message: "What is manager's office number?",
-        name: "name"
-    }
-    ])
-}
-addManager();
-
-function addMember() {
-    inquirer.prompt([
-    
+        name: "officeNumber"
+    },
     {
         type: "list",
-        message: "Wich type of team member would you like to add?",
+        message: "Which type of team member would you like to add?",
         name: "role",
         choices: ["Engineer",
                   "Intern",
                 "No more team member to add"]
-    },
-    {
-        message: "Enter team member's name",
-        name: "name"
-    },
-    {
-        message: "Enter team member's id",
-        name: "id"
-    },
-    {
-        message: "Enter team member's email address",
-        name: "email"
-    }])
+    }
+    ]).then(function({role}) {
+        if (role === "Engineer") {
+            addEngineer();
+        } else if (role === "Intern") {
+            addIntern();
+        } else (console.log("Employees team summary generated!"));
+})
+}
+function addEngineer() {
+    inquirer.prompt([
+        {
+            message: `Enter Engineer's name:`,
+            name: "name"
+        },
+        {
+            message: "Enter Engineer's ID number?",
+            name: "ID"
+        },
+        {
+            message: `Enter Engineer's email:`,
+            name: "email"
+        },
+        {
+            message: `Enter Engineer's GitHub username:`,
+            name: "GitHub"
+        },
+        {
+            type: "list",
+            message: "Which type of team member would you like to add?",
+            name: "role",
+            choices: ["Engineer",
+                      "Intern",
+                    "No more team member to add"]
+        }
+    ]).then(function({role}) {
+        if (role === "Engineer") {
+            addEngineer();
+        } else if (role === "Intern") {
+            addIntern();
+        } else (console.log("Employees team summary generated!"));
+})
+}
+function addIntern() {
+    inquirer.prompt([
+        {
+            message: `Enter Intern's name:`,
+            name: "name"
+        },
+        {
+            message: "Enter Intern's ID number?",
+            name: "ID"
+        },
+        {
+            message: `Enter Intern's email:`,
+            name: "email"
+        },
+        {
+            message: `Enter Intern's School name:`,
+            name: "school"
+        },
+        {
+            type: "list",
+            message: "Which type of team member would you like to add?",
+            name: "role",
+            choices: ["Engineer",
+                      "Intern",
+                    "No more team member to add"]
+        }
+    ]).then(function({role}) {
+        if (role === "Engineer") {
+            addEngineer();
+        } else if (role === "Intern") {
+            addIntern();
+        } else (console.log("Employees team summary generated!"));
+})
 }
 
-
+addMember()
 
 // and to create objects for each team member (using the correct classes as blueprints!)
 
