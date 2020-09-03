@@ -12,9 +12,9 @@ const render = require("./lib/htmlRenderer");
 
 const team = [];
 
-//Manager Prompt
+//Manager Prompt 
 const addManager = () => {
-    return new Promise((res, rej) => {
+    return new Promise((res) => {
             inquirer.prompt([
                 {
                     type: "input",
@@ -30,7 +30,7 @@ const addManager = () => {
                     type: "input",
                     message: "Enter manager's email:",
                     name: "email",
-                    //email validator
+                    //email validator function
                     default: () => {},
                     validate: function (email) {
                     valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
@@ -47,6 +47,7 @@ const addManager = () => {
                     message: "Enter manager's office number:",
                     name: "officeNumber",
                 },
+            //function to add created manager's info into team array     
             ]).then(answers => {
                 const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
                 team.push(manager);
@@ -54,13 +55,13 @@ const addManager = () => {
             });
     });
 }
-//Prompt for adding Engineer or Intern
+//Prompt for adding Engineer or Intern input
 const addEmployee = () => {
-    return new Promise((resolve, rej) => {
+    return new Promise((resolve) => {
         inquirer.prompt([
             {
                 type: "list",
-                message: "Select the Employee would you like to add:",
+                message: "Select the Employee you would like to add:",
                 name: "role",
                 choices: [
                     "Engineer",
@@ -133,6 +134,7 @@ const addEmployee = () => {
                 name: "school",
                 when: ({ role }) => role === "Intern"
             }
+        //function to add created Engineer/Intern info into team array     
         ]).then(answers => {
             if (answers.role) {
                 switch (answers.role) {
@@ -153,8 +155,25 @@ const addEmployee = () => {
     })
 }
 
-
+//calling Manager's and employee's prompt functions
 addManager().then(() => {
     return addEmployee();
-})
+//calling render function to export team array information into html template   
+}).then(() => {
+    const templateHTML = render(team)
+    generatePage(templateHTML);
+}).catch((err) => {
+    console.log(err);
+});
 
+//function to generate html page in output folder
+const generatePage = (htmlPage) => {
+    if (!fs.existsSync(OUTPUT_DIR)) {
+        fs.mkdirSync(OUTPUT_DIR);
+    }
+
+    fs.writeFile(outputPath, htmlPage, "utf-8", (err) => {
+        if(err) throw err;
+        console.log("Team profile page generated!")
+    });
+}
