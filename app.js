@@ -23,7 +23,7 @@ const addManager = () => {
                 },
                 {
                     type: "input",
-                    message: "Enter manager's id:",
+                    message: "Enter manager's ID:",
                     name: "id",
                 },
                 {

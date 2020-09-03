@@ -1,0 +1,34 @@
+.mb-3 {
+    background-color: teal;
+    color: white;
+}
+
+.card {
+    margin: auto;
+    margin-top: 20px;
+    box-shadow: 3px 3px 3px 3px gray;
+}
+
+.card-title {
+    color: white;
+}
+#manager {
+    background-color: blueviolet;
+}
+
+#engineer {
+    background-color: blue;
+}
+
+#intern {
+    background-color: orange;
+}
+
+@media only screen and (max-width: 812px) {
+
+    .card {
+        margin-top: 15px;
+        width: 100%;
+    }
+    
+}
