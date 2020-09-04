@@ -22,6 +22,8 @@ If anyone want to improve the app, feel free to contact me.
 ## Test
 The dependency for testing is jest. It should already being intalled if you run ```npm install``` to get all dependencies. Run ```npm run test``` for the test. 
 ## Screenshot
+[Click here to see the demo video](https://youtu.be/qcyE4vuDZa8)
+
 ![](/Assets/ScreenShot.png)
 ## Questions
 Contact me: kevkouadio@gmail.com

@@ -174,6 +174,6 @@ const generatePage = (htmlPage) => {
 
     fs.writeFile(outputPath, htmlPage, "utf-8", (err) => {
         if(err) throw err;
-        console.log("Team profile page generated!")
+        console.log("Team profile page generated!");
     });
 }
